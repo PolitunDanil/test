@@ -35,8 +35,7 @@ class Child(tk.Toplevel):
         self.entry = Entry(self, width=30)
         self.entry2 = Entry(self, width=30)
 
-        # self.text = tk.Label(text='список')
-        '''пишет на главной'''
+        
 
 
 
@@ -54,10 +53,10 @@ class Child(tk.Toplevel):
 
     def add_new(self):
         self.theList = Listbox(self, selectmode=SINGLE)
-        # self.text.place(x=10, y=20) """пишет на главной"""
+        
         self.theList.place(x=20, y=50)
         self.theList.insert(0, "Что мне нужно:")
-        # self.entry.grid(row=0, column=0)
+        
 
         btn2 = Button(self, text='+', command=self.add_new2)
         btn2.place(x=300, y=20)
