@@ -1,4 +1,7 @@
+from tkinter import *
 import tkinter as tk
+from tkinter.ttk import *
+
 
 
 class Main(tk.Frame):
@@ -25,29 +28,58 @@ class Main(tk.Frame):
 
 
 class Child(tk.Toplevel):
+
     def __init__(self):
         super().__init__(root)
         self.init_child()
-        self.entry = tk.Entry(self, width=30)
-        self.entry2 = tk.Entry(self, width=30)
+        self.entry = Entry(self, width=30)
+        self.entry2 = Entry(self, width=30)
+
+        # self.text = tk.Label(text='список')
+        '''пишет на главной'''
+
+
+
 
     def init_child(self):
         self.title('Home')
         self.geometry('500x400')
-
         self.grab_set()
         self.focus_set()
+
         btn1 = tk.Button(self, text='+', command=self.add_new)
         btn1.place(x=30, y=20)
+    sv = StringVar
+
 
     def add_new(self):
-        self.entry.place(x=20,y=50)
-        btn2 = tk.Button(self, text='+', command=self.add_new2)
+        self.theList = Listbox(self, selectmode=SINGLE)
+        # self.text.place(x=10, y=20) """пишет на главной"""
+        self.theList.place(x=20, y=50)
+        self.theList.insert(0, "Что мне нужно:")
+        # self.entry.grid(row=0, column=0)
+
+        btn2 = Button(self, text='+', command=self.add_new2)
         btn2.place(x=300, y=20)
+        btn4 = Button(self, text='Удалить', command=self.off_list)
+        btn4.place(x=30, y=220)
 
     def add_new2(self):
-        self.entry2.place(x=300,y=50)
-        
+        self.entry2.place(x=300, y=50)
+        btn3 = Button(self, text='Добавить в список', command=self.to_list)
+        btn3.place(x=300, y=75)
+
+
+    def to_list(self):
+        add_list = self.entry2.get()
+        self.theList.insert(END, add_list)
+
+    def off_list(self):
+        what = self.theList.curselection()
+        self.theList.delete(what[0])
+
+
+
 
 
 
